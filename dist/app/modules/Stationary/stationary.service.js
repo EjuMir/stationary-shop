@@ -15,6 +15,24 @@ const createStationaryProductInDB = (product) => __awaiter(void 0, void 0, void 
     const result = yield stationary_model_1.StationaryModel.create(product);
     return result;
 });
+const getAllProductFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield stationary_model_1.StationaryModel.find();
+    return result;
+});
+const getSingleProductFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield stationary_model_1.StationaryModel.findOne({ _id: new Object(id) });
+    return result;
+});
+const updateProductInDB = (id, updateProduct) => __awaiter(void 0, void 0, void 0, function* () {
+    const newUpdatedTime = (updateProduct.updatedAt = Date.now());
+    const updatedProduct = Object.assign(Object.assign({}, updateProduct), { updatedAt: newUpdatedTime });
+    const result = yield stationary_model_1.StationaryModel.findByIdAndUpdate(id, { updatedProduct });
+    console.log(result);
+    return result;
+});
 exports.StationaryProductServices = {
     createStationaryProductInDB,
+    getAllProductFromDB,
+    getSingleProductFromDB,
+    updateProductInDB,
 };

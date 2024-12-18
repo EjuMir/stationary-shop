@@ -1,4 +1,4 @@
-import { Schema, model, connect } from 'mongoose';
+
 
 export type Stationary = {
     name: string,
@@ -7,5 +7,7 @@ export type Stationary = {
     category: 'Writing' | 'Office Supplies' | 'Art Supplies' | 'Educational' | 'Technology' //enum
     description: string,
     quantity: number,
-    inStock: boolean
+    inStock: boolean,
+    createdAt: number,
+    updatedAt: number
   }
