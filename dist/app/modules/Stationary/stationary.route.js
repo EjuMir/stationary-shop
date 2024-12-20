@@ -11,4 +11,5 @@ router.post('/products', stationary_controller_1.StationaryControllers.createSta
 router.get('/products', stationary_controller_1.StationaryControllers.getAllProduct);
 router.get('/products/:id', stationary_controller_1.StationaryControllers.getSingleProduct);
 router.put('/products/:id', stationary_controller_1.StationaryControllers.updateOneProduct);
+router.delete('/products/:id', stationary_controller_1.StationaryControllers.deleteOneProduct);
 exports.StationaryRoutes = router;

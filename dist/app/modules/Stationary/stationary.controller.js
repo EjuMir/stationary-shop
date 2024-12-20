@@ -82,9 +82,28 @@ const updateOneProduct = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 });
+const deleteOneProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const productId = req.params.id;
+        const product = yield stationary_service_1.StationaryProductServices.deleteProductFromDB(productId);
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully",
+            data: product
+        });
+    }
+    catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Error deleting product",
+            error: err.message
+        });
+    }
+});
 exports.StationaryControllers = {
     createStationaryProduct,
     getAllProduct,
     getSingleProduct,
     updateOneProduct,
+    deleteOneProduct
 };

@@ -9,5 +9,6 @@ export type Stationary = {
     quantity: number,
     inStock: boolean,
     createdAt: number,
-    updatedAt: number
+    updatedAt: number,
+    isDeleted: boolean
   }

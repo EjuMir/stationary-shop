@@ -24,9 +24,15 @@ const updateProductInDB = async(id : string, updateProduct : Stationary)=>{
   return result
 }
 
+const deleteProductFromDB = async(id:string) =>{
+  const result = await StationaryModel.updateOne({_id: new Object(id)}, {isDeleted:true});
+  return result
+}
+
 export const StationaryProductServices = {
     createStationaryProductInDB,
     getAllProductFromDB,
     getSingleProductFromDB,
     updateProductInDB,
+    deleteProductFromDB,
 }

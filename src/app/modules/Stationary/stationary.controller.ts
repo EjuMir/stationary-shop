@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StationaryProductServices } from "./stationary.service";
 
-
+ 
 const createStationaryProduct = async(req : Request, res : Response) => {
 
     try{
@@ -75,9 +75,29 @@ const updateOneProduct = async(req:Request, res:Response) =>{
    }
 }
 
+const deleteOneProduct = async(req:Request, res:Response) => {
+   try{
+    const productId = req.params.id;
+    const product = await StationaryProductServices.deleteProductFromDB(productId);
+    res.status(200).json({
+        success: true,
+        message: "Product deleted successfully",
+        data: product
+    })
+   }catch(err:any){
+    res.status(500).json({
+        success: false,
+        message: "Error deleting product",
+        error: err.message
+    })
+   }
+    
+}
+
 export const StationaryControllers = {
     createStationaryProduct,
     getAllProduct,
     getSingleProduct,
     updateOneProduct,
+    deleteOneProduct
 }

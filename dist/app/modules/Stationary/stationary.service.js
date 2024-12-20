@@ -30,9 +30,14 @@ const updateProductInDB = (id, updateProduct) => __awaiter(void 0, void 0, void 
     console.log(result);
     return result;
 });
+const deleteProductFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield stationary_model_1.StationaryModel.updateOne({ _id: new Object(id) }, { isDeleted: true });
+    return result;
+});
 exports.StationaryProductServices = {
     createStationaryProductInDB,
     getAllProductFromDB,
     getSingleProductFromDB,
     updateProductInDB,
+    deleteProductFromDB,
 };

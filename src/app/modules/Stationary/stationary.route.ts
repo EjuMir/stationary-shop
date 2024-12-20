@@ -11,4 +11,7 @@ router.get('/products/:id', StationaryControllers.getSingleProduct)
 
 router.put('/products/:id', StationaryControllers.updateOneProduct)
 
+router.delete('/products/:id', StationaryControllers.deleteOneProduct)
+
+
 export const StationaryRoutes = router
