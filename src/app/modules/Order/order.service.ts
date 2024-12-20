@@ -17,7 +17,6 @@ const createOrderInDB = async (orderData: Orders) => {
 }
 
 
-
 export const OrderService = {
     createOrderInDB,
     getSingleOrderByProductID,

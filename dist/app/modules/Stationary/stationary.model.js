@@ -18,7 +18,7 @@ const stationarySchema = new mongoose_1.Schema({
     updatedAt: { type: Number, default: Date.now() },
     isDeleted: { type: Boolean, default: false }
 });
-stationarySchema.pre('findOne', function (next) {
+stationarySchema.pre('find', function (next) {
     this.find({ isDeleted: { $ne: true } });
     next();
 });

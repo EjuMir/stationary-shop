@@ -19,7 +19,7 @@ const stationarySchema = new Schema<Stationary>({
     isDeleted: { type: Boolean, default: false }
 })
 
-stationarySchema.pre('findOne', function(next){
+stationarySchema.pre('find', function(next){
  this.find({isDeleted: {$ne: true}});
  next();
 })

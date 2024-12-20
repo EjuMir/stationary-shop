@@ -9,11 +9,12 @@ const OrderSchema = new Schema<Orders>({
     totalPrice: {type: Number , required:true},
     createdAt: { type: Number, default: Date.now() },
     updatedAt: { type: Number, default: Date.now() },
-})
+}) 
 
 OrderSchema.post('save', async function(doc, next) {
     try {
         const { product, quantity } = doc;
+        console.log(doc);
         const productFromStationary = await StationaryProductServices.getSingleProductFromDB(product);
         
         if (!productFromStationary) {

@@ -24,6 +24,7 @@ OrderSchema.post('save', function (doc, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { product, quantity } = doc;
+            console.log(doc);
             const productFromStationary = yield stationary_service_1.StationaryProductServices.getSingleProductFromDB(product);
             if (!productFromStationary) {
                 throw new Error(`Product with ID ${product} not found`);

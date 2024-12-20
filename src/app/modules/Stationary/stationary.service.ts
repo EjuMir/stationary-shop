@@ -15,11 +15,11 @@ const getSingleProductFromDB = async(id:string) =>{
   const result = await StationaryModel.findOne({_id: new Object(id)});
   return result
 }
-
+ 
 const updateProductInDB = async(id : string, updateProduct : Stationary)=>{
   const newUpdatedTime = (updateProduct.updatedAt = Date.now());
   const updatedProduct = {...updateProduct, updatedAt: newUpdatedTime};
-  const result = await StationaryModel.findByIdAndUpdate(id, {updatedProduct});
+  const result = await StationaryModel.findByIdAndUpdate({_id:new Object(id)}, updatedProduct);
   console.log(result);
   return result
 }

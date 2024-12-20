@@ -51,6 +51,7 @@ const createProductOrder = (req, res) => __awaiter(void 0, void 0, void 0, funct
     try {
         const { order: orderData } = req.body;
         const orderProd = yield order_service_1.OrderService.createOrderInDB(orderData);
+        console.log(orderProd);
         res.status(201).json({
             success: true,
             message: "Order created successfully",

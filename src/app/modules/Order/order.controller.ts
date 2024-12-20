@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { OrderService } from './order.service';
 import { OrderModel } from './order.model';
-
+ 
 const getSingleOrder = async(req:Request, res:Response)=>{
   try{
     const productId = req.params.id
@@ -37,16 +37,16 @@ const getAllOrders = async(req:Request, res:Response)=>{
   }
 }
 
- const createProductOrder = async (req: Request, res: Response) => {
+ const createProductOrder = async(req: Request, res: Response) => {
      try{
        const {order:orderData} = req.body;
        const orderProd = await OrderService.createOrderInDB(orderData);
+       console.log(orderProd);
        res.status(201).json({
           success: true,
           message: "Order created successfully",
           data: orderProd,
        })
-       
      }catch(err:any){
         res.status(500).json({
             success: false,

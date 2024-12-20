@@ -3,6 +3,7 @@ import { StationaryControllers } from './stationary.controller';
 
 const router = express.Router();
 
+
 router.post('/products', StationaryControllers.createStationaryProduct)
 
 router.get('/products', StationaryControllers.getAllProduct)
