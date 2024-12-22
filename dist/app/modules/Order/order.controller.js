@@ -48,21 +48,25 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 const createProductOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { order: orderData } = req.body;
     try {
-        const { order: orderData } = req.body;
-        const orderProd = yield order_service_1.OrderService.createOrderInDB(orderData);
-        console.log(orderProd);
-        res.status(201).json({
-            success: true,
-            message: "Order created successfully",
-            data: orderProd,
-        });
+        const result = yield order_service_1.OrderService.createOrderInDB(orderData.product, orderData.quantity, orderData);
+        if (result.success) {
+            res.status(200).json({
+                message: result.message,
+            });
+        }
+        else {
+            res.status(404).json({
+                message: result.message,
+            });
+        }
     }
     catch (err) {
         res.status(500).json({
-            success: false,
-            message: "Error creating order",
-            error: err.message
+            message: 'Internal server error',
+            error: err.message,
+            stack: err.stack,
         });
     }
 });
@@ -96,12 +100,11 @@ const calculateRevenue = (req, res) => __awaiter(void 0, void 0, void 0, functio
                 },
             },
         ]);
-        console.log(orders);
         const totalRevenue = orders[0] ? orders[0].totalRevenue : 0;
         res.status(200).json({
             message: 'Revenue calculated successfully',
             success: true,
-            data: totalRevenue,
+            data: { totalRevenue: totalRevenue },
         });
     }
     catch (err) {

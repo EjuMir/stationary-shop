@@ -23,9 +23,10 @@ const createStationaryProduct = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
     catch (err) {
         res.status(500).json({
+            message: "Validation Failed",
             success: false,
-            message: "Error creating product",
-            error: err.message
+            error: { name: 'Validation Error', errors: err.errors },
+            stack: err.stack
         });
     }
 });

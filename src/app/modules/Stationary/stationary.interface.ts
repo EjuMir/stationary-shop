@@ -7,8 +7,8 @@ export type Stationary = {
     category: 'Writing' | 'Office Supplies' | 'Art Supplies' | 'Educational' | 'Technology' //enum
     description: string,
     quantity: number,
-    inStock: boolean,
-    createdAt: number,
-    updatedAt: number,
+    inStock?: boolean,
+    updatedAt: string,
+    createdAt: string,
     isDeleted: boolean
   }

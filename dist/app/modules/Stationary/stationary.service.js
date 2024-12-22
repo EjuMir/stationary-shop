@@ -24,10 +24,9 @@ const getSingleProductFromDB = (id) => __awaiter(void 0, void 0, void 0, functio
     return result;
 });
 const updateProductInDB = (id, updateProduct) => __awaiter(void 0, void 0, void 0, function* () {
-    const newUpdatedTime = (updateProduct.updatedAt = Date.now());
+    const newUpdatedTime = (updateProduct.updatedAt = new Date().toJSON());
     const updatedProduct = Object.assign(Object.assign({}, updateProduct), { updatedAt: newUpdatedTime });
     const result = yield stationary_model_1.StationaryModel.findByIdAndUpdate({ _id: new Object(id) }, updatedProduct);
-    console.log(result);
     return result;
 });
 const deleteProductFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {

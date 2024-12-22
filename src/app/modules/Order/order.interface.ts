@@ -4,6 +4,6 @@ export type Orders = {
     product: string,
     quantity: number,
     totalPrice: number,
-    createdAt: number,
-    updatedAt: number
+    createdAt:string,
+    updatedAt:string
   }

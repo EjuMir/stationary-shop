@@ -38,23 +38,27 @@ const getAllOrders = async(req:Request, res:Response)=>{
 }
 
  const createProductOrder = async(req: Request, res: Response) => {
-     try{
-       const {order:orderData} = req.body;
-       const orderProd = await OrderService.createOrderInDB(orderData);
-       console.log(orderProd);
-       res.status(201).json({
-          success: true,
-          message: "Order created successfully",
-          data: orderProd,
-       })
-     }catch(err:any){
-        res.status(500).json({
-            success: false,
-            message: "Error creating order",
-            error: err.message
-        })
-     }
-     
+  const {order:orderData} = req.body;
+
+  try {
+    const result = await OrderService.createOrderInDB(orderData.product, orderData.quantity, orderData);
+
+    if (result.success) {
+      res.status(200).json({
+        message: result.message,
+      });
+    } else {
+      res.status(404).json({
+        message: result.message,
+      });
+    }
+  } catch (err:any) {
+    res.status(500).json({
+      message: 'Internal server error',
+      error: err.message,
+      stack: err.stack,
+    });
+  }
 };
 
  const calculateRevenue = async(req: Request, res: Response) => {
@@ -87,13 +91,13 @@ const getAllOrders = async(req:Request, res:Response)=>{
         },
       },
     ]);
-    console.log(orders);
+
     const totalRevenue = orders[0] ? orders[0].totalRevenue : 0;
 
     res.status(200).json({
       message: 'Revenue calculated successfully',
       success: true,
-      data: totalRevenue,
+      data: {totalRevenue : totalRevenue},
     });
   } catch (err:any) {
     res.status(500).json({
